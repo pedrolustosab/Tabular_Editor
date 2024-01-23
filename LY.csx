@@ -1,4 +1,4 @@
-var dateColumn = "'Demandas'[Data de Entrada]";                   // Precisa mudar a coluna de data
+var dateColumn = "dCalendario[Data]";                   // Precisa mudar a coluna de data
 foreach(var m in Selected.Measures) {
     var newMeasure = m.Table.AddMeasure(
     m.Name + "_LY",                                             // Name
