@@ -1,0 +1,95 @@
+Object	Name	ObjectType	Parent	Description	FormatString	DataType	Expression
+Model.T.Medidas.M.ONE	ONE	Measure	Model.T.Medidas		0	Variant	1
+Model.T.Medidas.M.FATO_FLT	FATO_FLT	Measure	Model.T.Medidas			Variant	COUNTROWS ( fNotas )
+Model.T.Medidas.M.TRANSPARENTE	TRANSPARENTE	Measure	Model.T.Medidas			Variant	"RGBA(0,0,0,0)"
+Model.T.Medidas.M.*FILIAL	*FILIAL	Measure	Model.T.Medidas	Contagem da coluna 'fNotas'[SK_FILIAL]	0	Variant	DISTINCTCOUNT ( 'fNotas'[SK_FILIAL] )
+Model.T.Medidas.M.*CLIENTE	*CLIENTE	Measure	Model.T.Medidas	Contagem da coluna 'fNotas'[SK_CLIENTE]	0	Variant	DISTINCTCOUNT ( 'fNotas'[SK_CLIENTE] )
+Model.T.Medidas.M.*VENDEDOR	*VENDEDOR	Measure	Model.T.Medidas	Contagem da coluna 'fNotas'[SK_VENDEDOR]	0	Variant	DISTINCTCOUNT ( 'fNotas'[SK_VENDEDOR] )
+Model.T.Medidas.M.*PRODUTO	*PRODUTO	Measure	Model.T.Medidas	Contagem da coluna 'fNotas'[SK_PRODUTO]	0	Variant	DISTINCTCOUNT ( 'fNotas'[SK_PRODUTO] )
+Model.T.Medidas.M.#PRECO	#PRECO	Measure	Model.T.Medidas	Soma da coluna 'fNotas'[PRECO]	#,0.00	Variant	SUM ( 'fNotas'[PRECO] )
+Model.T.Medidas.M.#QUANTIDADE	#QUANTIDADE	Measure	Model.T.Medidas	Soma da coluna 'fNotas'[QUANTIDADE]	0.00	Variant	SUM ( 'fNotas'[QUANTIDADE] )
+Model.T.Medidas.M.#META	#META	Measure	Model.T.Medidas	Soma da coluna 'fMetas'[META]	#,0.00	Variant	SUM ( 'fMetas'[META] )
+Model.T.Medidas.M.#PRECO_KPI	#PRECO_KPI	Measure	Model.T.Medidas	Criar a KPI da medida: [#PRECO]	0.00	Variant	[#PRECO]
+Model.T.Medidas.M.#QUANTIDADE_KPI	#QUANTIDADE_KPI	Measure	Model.T.Medidas	Criar a KPI da medida: [#QUANTIDADE]	0.00	Variant	[#QUANTIDADE]
+Model.T.Medidas.M.PRECO_T	PRECO_T	Measure	Model.T.Medidas		0.00%;-0.00%;0.00%	Variant	[#PRECO] - [#META]
+Model.T.Medidas.M.PRECO_%T	PRECO_%T	Measure	Model.T.Medidas		0.00%;-0.00%;0.00%	Variant	DIVIDE (\r\n    [PRECO_T],\r\n    [#META]\r\n)
+Model.T.Medidas.M.#PRECO_LY	#PRECO_LY	Measure	Model.T.Medidas	Ano anterior da [#PRECO]	0.00	Variant	CALCULATE (\r\n    [#PRECO],\r\n    SAMEPERIODLASTYEAR ( 'dCalendario'[Data] )\r\n)
+Model.T.Medidas.M.#QUANTIDADE_LY	#QUANTIDADE_LY	Measure	Model.T.Medidas	Ano anterior da [#QUANTIDADE]	0.00	Variant	CALCULATE (\r\n    [#QUANTIDADE],\r\n    SAMEPERIODLASTYEAR ( 'dCalendario'[Data] )\r\n)
+Model.T.Medidas.M.ANO PASSADO	ANO PASSADO	Measure	Model.T.Medidas			Variant	"❚ Último ano:"
+Model.T.Medidas.M.PRECO_%T_FORMAT	PRECO_%T_FORMAT	Measure	Model.T.Medidas	Formatação da [PRECO_%T]	0.00	Variant	FORMAT (\r\n    [PRECO_%T],\r\n    "  ⮝0.0%  ;  ⮟-0.0%  ",\r\n    "pt-BR"\r\n)
+Model.T.Medidas.M.PRECO_%T_CLR	PRECO_%T_CLR	Measure	Model.T.Medidas	Cor da [PRECO_%T]		Variant	SWITCH (\r\n    TRUE (),\r\n    [PRECO_%T] > 0, "#369B43",\r\n    [PRECO_%T] < 0, "#C80919",\r\n    "#7E898D"\r\n)
+Model.T.Medidas.M.#PRECO_YoY	#PRECO_YoY	Measure	Model.T.Medidas	Ano anterior da [#PRECO]	0.00	Variant	DIVIDE (\r\n    [#PRECO]\r\n        - CALCULATE (\r\n            [#PRECO],\r\n            SAMEPERIODLASTYEAR ( 'dCalendario'[Data] )\r\n        ),\r\n    CALCULATE (\r\n        [#PRECO],\r\n        SAMEPERIODLASTYEAR ( 'dCalendario'[Data] )\r\n    )\r\n)
+Model.T.Medidas.M.#QUANTIDADE_YoY	#QUANTIDADE_YoY	Measure	Model.T.Medidas	Ano anterior da [#QUANTIDADE]	0.00	Variant	DIVIDE (\r\n    [#QUANTIDADE]\r\n        - CALCULATE (\r\n            [#QUANTIDADE],\r\n            SAMEPERIODLASTYEAR ( 'dCalendario'[Data] )\r\n        ),\r\n    CALCULATE (\r\n        [#QUANTIDADE],\r\n        SAMEPERIODLASTYEAR ( 'dCalendario'[Data] )\r\n    )\r\n)
+Model.T.Medidas.M.#QUANTIDADE_YoY_FORMAT	#QUANTIDADE_YoY_FORMAT	Measure	Model.T.Medidas	Formatação da [#QUANTIDADE_YoY]	0.00	Variant	FORMAT (\r\n    [#QUANTIDADE_YoY],\r\n    "  ⮝0.0%  ;  ⮟-0.0%  ",\r\n    "pt-BR"\r\n)
+Model.T.Medidas.M.#PRECO_YoY_FORMAT	#PRECO_YoY_FORMAT	Measure	Model.T.Medidas	Formatação da [#PRECO_YoY]	0.00	Variant	FORMAT (\r\n    [#PRECO_YoY],\r\n    "  ⮝0.0%  ;  ⮟-0.0%  ",\r\n    "pt-BR"\r\n)
+Model.T.Medidas.M.#QUANTIDADE_YoY_CLR	#QUANTIDADE_YoY_CLR	Measure	Model.T.Medidas	Cor da [#QUANTIDADE_YoY]		Variant	SWITCH (\r\n    TRUE (),\r\n    [#QUANTIDADE_YoY] > 0, "#369B43",\r\n    [#QUANTIDADE_YoY] < 0, "#C80919",\r\n    "#7E898D"\r\n)
+Model.T.Medidas.M.#PRECO_YoY_CLR	#PRECO_YoY_CLR	Measure	Model.T.Medidas	Cor da [#PRECO_YoY]		Variant	SWITCH (\r\n    TRUE (),\r\n    [#PRECO_YoY] > 0, "#369B43",\r\n    [#PRECO_YoY] < 0, "#C80919",\r\n    "#7E898D"\r\n)
+Model.T.Medidas.M.#QUANTIDADE_Best	#QUANTIDADE_Best	Measure	Model.T.Medidas	O melhor da [#QUANTIDADE]	0.00	Variant	CONCATENATEX (\r\n    TOPN (\r\n        1,\r\n        VALUES ( dProduto[PRODUTO] ),\r\n        [#QUANTIDADE]\r\n    ),\r\n    dProduto[PRODUTO],\r\n    ", "\r\n)
+Model.T.Medidas.M.#PRECO_Best	#PRECO_Best	Measure	Model.T.Medidas	O melhor da [#PRECO]	0.00	Variant	CONCATENATEX (\r\n    TOPN (\r\n        1,\r\n        VALUES ( dProduto[PRODUTO] ),\r\n        [#PRECO]\r\n    ),\r\n    dProduto[PRODUTO],\r\n    ", "\r\n)
+Model.T.Medidas.M.Melhor produto	Melhor produto	Measure	Model.T.Medidas			Variant	"❚ Melhor produto:"
+Model.T.Medidas.M.#PRECO_Best 1	#PRECO_Best 1	Measure	Model.T.Medidas	O melhor da [#PRECO]	0.00	Variant	CONCATENATEX (\r\n    TOPN (\r\n        1,\r\n        VALUES ( dFilial[FILIAL] ),\r\n        [#PRECO]\r\n    ),\r\n    dFilial[FILIAL],\r\n    ", "\r\n)
+Model.T.Medidas.M.#QUANTIDADE_Best 1	#QUANTIDADE_Best 1	Measure	Model.T.Medidas	O melhor da [#QUANTIDADE]	0.00	Variant	CONCATENATEX (\r\n    TOPN (\r\n        1,\r\n        VALUES ( dFilial[FILIAL] ),\r\n        [#QUANTIDADE]\r\n    ),\r\n    dFilial[FILIAL],\r\n    ", "\r\n)
+Model.T.Medidas.M.%P_PAGAMENTO_[#PRECO]	%P_PAGAMENTO_[#PRECO]	Measure	Model.T.Medidas	Prercetual de contribuição da 'dPagamento'[PAGAMENTO]	0.0%	Variant	FORMAT (\r\n    DIVIDE (\r\n        [#PRECO],\r\n        CALCULATE (\r\n            [#PRECO],\r\n            ALLSELECTED ( 'dPagamento'[PAGAMENTO] )\r\n        )\r\n    ),\r\n    "0.0%",\r\n    "pt-br"\r\n)
+Model.T.Medidas.M.%P_CATEGORIA_[#PRECO]	%P_CATEGORIA_[#PRECO]	Measure	Model.T.Medidas	Prercetual de contribuição da 'dProduto'[CATEGORIA]	0.0%	Variant	FORMAT (\r\n    DIVIDE (\r\n        [#PRECO],\r\n        CALCULATE (\r\n            [#PRECO],\r\n            ALLSELECTED ( 'dProduto'[CATEGORIA] )\r\n        )\r\n    ),\r\n    "0.0%",\r\n    "pt-br"\r\n)
+Model.T.Medidas.M.%P_FILIAL_[#PRECO]	%P_FILIAL_[#PRECO]	Measure	Model.T.Medidas	Prercetual de contribuição da 'dFilial'[FILIAL]	0.0%	Variant	FORMAT (\r\n    DIVIDE (\r\n        [#PRECO],\r\n        CALCULATE (\r\n            [#PRECO],\r\n            ALLSELECTED ( 'dFilial'[FILIAL] )\r\n        )\r\n    ),\r\n    "0.0%",\r\n    "pt-br"\r\n)
+Model.T.Medidas.M.%P_ESTADO_[#PRECO]	%P_ESTADO_[#PRECO]	Measure	Model.T.Medidas	Prercetual de contribuição da 'dCliente'[ESTADO]	0.0%	Variant	FORMAT (\r\n    DIVIDE (\r\n        [#PRECO],\r\n        CALCULATE (\r\n            [#PRECO],\r\n            ALLSELECTED ( 'dCliente'[ESTADO] )\r\n        )\r\n    ),\r\n    "0.0%",\r\n    "pt-br"\r\n)
+Model.T.Medidas.M.Melhor filial	Melhor filial	Measure	Model.T.Medidas			Variant	"❚ Melhor filial:"
+Model.T.Medidas.M.'%P_GERAL_#PRECO	'%P_GERAL_#PRECO	Measure	Model.T.Medidas			Variant	VAR _Coluna =\r\n    MAX ( '_Dimensão'[_Dimensão Order] )\r\nRETURN\r\n    SWITCH (\r\n        TRUE (),\r\n        _Coluna = 0, [%P_FILIAL_[#PRECO]]],\r\n        _Coluna = 1, [%P_PAGAMENTO_[#PRECO]]],\r\n        _Coluna = 2, [%P_ESTADO_[#PRECO]]],\r\n        _Coluna = 3, [%P_CATEGORIA_[#PRECO]]]\r\n    )
+Model.T.Medidas.M.%P_PAGAMENTO_#QUANTIDADE	%P_PAGAMENTO_#QUANTIDADE	Measure	Model.T.Medidas	Prercetual de contribuição da 'dPagamento'[PAGAMENTO]	0.0%	Variant	FORMAT (\r\n    DIVIDE (\r\n        [#QUANTIDADE],\r\n        CALCULATE (\r\n            [#QUANTIDADE],\r\n            ALLSELECTED ( 'dPagamento'[PAGAMENTO] )\r\n        )\r\n    ),\r\n    "0.0%",\r\n    "pt-br"\r\n)
+Model.T.Medidas.M.%P_CATEGORIA_#QUANTIDADE	%P_CATEGORIA_#QUANTIDADE	Measure	Model.T.Medidas	Prercetual de contribuição da 'dProduto'[CATEGORIA]	0.0%	Variant	FORMAT (\r\n    DIVIDE (\r\n        [#QUANTIDADE],\r\n        CALCULATE (\r\n            [#QUANTIDADE],\r\n            ALLSELECTED ( 'dProduto'[CATEGORIA] )\r\n        )\r\n    ),\r\n    "0.0%",\r\n    "pt-br"\r\n)
+Model.T.Medidas.M.%P_FILIAL_#QUANTIDADE	%P_FILIAL_#QUANTIDADE	Measure	Model.T.Medidas	Prercetual de contribuição da 'dFilial'[FILIAL]	0.0%	Variant	FORMAT (\r\n    DIVIDE (\r\n        [#QUANTIDADE],\r\n        CALCULATE (\r\n            [#QUANTIDADE],\r\n            ALLSELECTED ( 'dFilial'[FILIAL] )\r\n        )\r\n    ),\r\n    "0.0%",\r\n    "pt-br"\r\n)
+Model.T.Medidas.M.%P_ESTADO_#QUANTIDADE	%P_ESTADO_#QUANTIDADE	Measure	Model.T.Medidas	Prercetual de contribuição da 'dCliente'[ESTADO]	0.0%	Variant	FORMAT (\r\n    DIVIDE (\r\n        [#QUANTIDADE],\r\n        CALCULATE (\r\n            [#QUANTIDADE],\r\n            ALLSELECTED ( 'dCliente'[ESTADO] )\r\n        )\r\n    ),\r\n    "0.0%",\r\n    "pt-br"\r\n)
+Model.T.Medidas.M.'%P_GERAL_#QUANTIDADE	'%P_GERAL_#QUANTIDADE	Measure	Model.T.Medidas			Variant	VAR _Coluna =\r\n    MAX ( '_Dimensão'[_Dimensão Order] )\r\nRETURN\r\n    SWITCH (\r\n        TRUE (),\r\n        _Coluna = 0, [%P_FILIAL_#QUANTIDADE],\r\n        _Coluna = 1, [%P_PAGAMENTO_#QUANTIDADE],\r\n        _Coluna = 2, [%P_ESTADO_#QUANTIDADE],\r\n        _Coluna = 3, [%P_CATEGORIA_#QUANTIDADE]\r\n    )
+Model.T.Medidas.M.Dolar	Dolar	Measure	Model.T.Medidas			Variant	AVERAGE ( fDolar[Último] )
+Model.T.Medidas.M.#PRECO_DUMMY	#PRECO_DUMMY	Measure	Model.T.Medidas	Soma da coluna 'fNotas'[PRECO]	#,0.00	Variant	[#PRECO]
+Model.T.fNotas.C.SK_FILIAL	SK_FILIAL	Column	Model.T.fNotas		0	Int64	
+Model.T.fNotas.C.SK_PAGAMENTO	SK_PAGAMENTO	Column	Model.T.fNotas			String	
+Model.T.fNotas.C.DT_EMISSAO	DT_EMISSAO	Column	Model.T.fNotas		Long Date	DateTime	
+Model.T.fNotas.C.DT_ENTREGA	DT_ENTREGA	Column	Model.T.fNotas		Long Date	DateTime	
+Model.T.fNotas.C.SK_CLIENTE	SK_CLIENTE	Column	Model.T.fNotas		0	Int64	
+Model.T.fNotas.C.SK_VENDEDOR	SK_VENDEDOR	Column	Model.T.fNotas		0	Int64	
+Model.T.fNotas.C.SK_PRODUTO	SK_PRODUTO	Column	Model.T.fNotas			String	
+Model.T.fNotas.C.QUANTIDADE	QUANTIDADE	Column	Model.T.fNotas		0	Int64	
+Model.T.fNotas.C.PRECO_UNITARIO	PRECO_UNITARIO	Column	Model.T.fNotas		0	Int64	
+Model.T.fNotas.C.PRECO	PRECO	Column	Model.T.fNotas		0	Int64	
+Model.T.dCliente.C.SK_CLIENTE	SK_CLIENTE	Column	Model.T.dCliente		0	Int64	
+Model.T.dCliente.C.CLIENTE	CLIENTE	Column	Model.T.dCliente			String	
+Model.T.dCliente.C.CIDADE	CIDADE	Column	Model.T.dCliente			String	
+Model.T.dCliente.C.ESTADO	ESTADO	Column	Model.T.dCliente			String	
+Model.T.dCliente.C.ATIVIDADE	ATIVIDADE	Column	Model.T.dCliente			String	
+Model.T.dFilial.C.SK_FILIAL	SK_FILIAL	Column	Model.T.dFilial		0	Int64	
+Model.T.dFilial.C.FILIAL	FILIAL	Column	Model.T.dFilial			String	
+Model.T.dProduto.C.SK_PRODUTO	SK_PRODUTO	Column	Model.T.dProduto			String	
+Model.T.dProduto.C.PRODUTO	PRODUTO	Column	Model.T.dProduto			String	
+Model.T.dProduto.C.SUBCATEGORIA	SUBCATEGORIA	Column	Model.T.dProduto			String	
+Model.T.dProduto.C.CATEGORIA	CATEGORIA	Column	Model.T.dProduto			String	
+Model.T.dProduto.C.CUSTO	CUSTO	Column	Model.T.dProduto		0	Int64	
+Model.T.dPagamento.C.SK_PAGAMENTO	SK_PAGAMENTO	Column	Model.T.dPagamento			String	
+Model.T.dPagamento.C.PAGAMENTO	PAGAMENTO	Column	Model.T.dPagamento			String	
+Model.T.dCalendario.C.Data	Data	Column	Model.T.dCalendario		dd/mm/yy	DateTime	
+Model.T.dCalendario.C.Ano	Ano	Column	Model.T.dCalendario		0	Int64	
+Model.T.dCalendario.C.Mês	Mês	Column	Model.T.dCalendario		0	Int64	
+Model.T.dCalendario.C.Nome do Mês	Nome do Mês	Column	Model.T.dCalendario			String	
+Model.T.dCalendario.C.Trimestre	Trimestre	Column	Model.T.dCalendario		0	Int64	
+Model.T.dCalendario.C.Dia	Dia	Column	Model.T.dCalendario		0	Int64	
+Model.T.dCalendario.C.Dia da Semana	Dia da Semana	Column	Model.T.dCalendario			String	
+Model.T.dCalendario.C.Class-week	Class-week	Column	Model.T.dCalendario		0	Int64	
+Model.T.dCalendario.C.Mes-Ano	Mes-Ano	Column	Model.T.dCalendario			String	
+Model.T.dCalendario.C.Class-MesAno	Class-MesAno	Column	Model.T.dCalendario		0	Int64	
+Model.T.dCalendario.C.Mes abrev	Mes abrev	Column	Model.T.dCalendario			String	
+Model.T.fMetas.C.MesAno	MesAno	Column	Model.T.fMetas		0	Int64	
+Model.T.fMetas.C.SK_FILIAL	SK_FILIAL	Column	Model.T.fMetas		0	Int64	
+Model.T.fMetas.C.META	META	Column	Model.T.fMetas		0	Int64	
+Model.T._Dimensão.C._Dimensão	_Dimensão	Column	Model.T._Dimensão			String	
+Model.T._$_QDTE.C.Name	Name	Column	Model.T._$_QDTE			String	
+Model.T._CONVERSÃO.C.Name	Name	Column	Model.T._CONVERSÃO			String	
+Model.T.fDolar.C.Último	Último	Column	Model.T.fDolar			Double	
+Model.T.fDolar.C.Data	Data	Column	Model.T.fDolar		Long Date	DateTime	
+Model.T._ACUMULAR.C.Acum/mensal	Acum/mensal	Column	Model.T._ACUMULAR			String	
+Model.T._DATAS.C.Active	Active	Column	Model.T._DATAS			String	
+Model.T._DATAS.C.Ordinal	Ordinal	Column	Model.T._DATAS		0	Int64	
+Model.T._DESTAQUES.C.Name	Name	Column	Model.T._DESTAQUES			String	
+Model.T.test.C.Data	Data	Column	Model.T.test		General Date	DateTime	
+Model.T._AGREGAÇÕES.C.Aggregation	Aggregation	Column	Model.T._AGREGAÇÕES			String	
+Model.T._AGREGAÇÕES.C.Ordinal	Ordinal	Column	Model.T._AGREGAÇÕES		0	Int64	
+Model.T._INTELIGENCIA_TEMPORAL.C.Time Period	Time Period	Column	Model.T._INTELIGENCIA_TEMPORAL			String	
