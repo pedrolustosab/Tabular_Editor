@@ -59,7 +59,7 @@ RETURN
         , ISSELECTEDMEASURE([#PRECO])
             , _Valor
         , ISSELECTEDMEASURE([#PRECO_DUMMY]) && _MinValue = _Valor ,
-            _MaxValue
+            _MinValue
         
     )
 
