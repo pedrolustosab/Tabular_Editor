@@ -1,9 +1,9 @@
 foreach(var m in Selected.Measures) {
     var newMeasure = m.Table.AddMeasure(
-    m.Name + "_FORMAT",                                             // Name
+    m.Name + "_FORMAT",                                          // Name
     "FORMAT ("           
     + m.DaxObjectName + ","
-    + " \"  ⮝0.0%  ;  ⮟-0.0%  \", \"pt-BR\") ",                         // DAX expression
+    + " \"  ⮝0.0%  ;  ⮟-0.0%  \", \"pt-BR\") ",                // DAX expression
         m.DisplayFolder                                        // Display Folder
     );
     newMeasure.FormatString = "0.00";
