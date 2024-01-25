@@ -1,11 +1,11 @@
-var dateColumn = "dProduto[PRODUTO]"; // Precisa mudar a coluna de data
+var Column = "dProduto[PRODUTO]"; // Precisa mudar a coluna de data
 
 foreach(var m in Selected.Measures) {
     var newMeasure = m.Table.AddMeasure(
-        m.Name + "_Best", // Name
+    m.Name + "_" + Column + "_Best", // Name
         "CONCATENATEX(" +
-        "TOPN(1, ALLSELECTED(" + dateColumn + "), " + m.DaxObjectName + ")," +
-            dateColumn +
+        "TOPN(1, ALLSELECTED(" + Column + "), " + m.DaxObjectName + ")," +
+            Column +
             ", \", \")", // DAX expression
         m.DisplayFolder // Display Folder
     );
